@@ -6,6 +6,13 @@ BubbleShoot.Bubble = (function($){
         this.getSprite = function(){ return sprite;};
         this.getCol = function(){ return col;};
         this.getRow = function(){ return row;};
+        this.getCoords = function(){
+            var coords = {
+                left : that.getCol() * BubbleShoot.ui.BUBBLE_DIMS/2 + BubbleShoot.ui.BUBBLE_DIMS/2,
+                top : that.getRow() * BubbleShoot.ui.ROW_HEIGHT + BubbleShoot.ui.BUBBLE_DIMS/2
+            };
+            return coords;
+        }
     };
     Bubble.create = function(rowNum,colNum,type){
         if(type == undefined){
