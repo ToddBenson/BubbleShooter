@@ -36,28 +36,36 @@ BubbleShoot.ui = (function($){
             },
             {
                 duration : duration,
-                easing : "linear"
+                easing : "linear",
+                complete : function(){
+                    if(bubble.getRow() !== null){
+                        bubble.getSprite().css({
+                            left : bubble.getCoords().left - ui.BUBBLE_DIMS/2,
+                            top : bubble.getCoords().top - ui.BUBBLE_DIMS/2
+                        });
+                    };
+                }
             });
         },
         drawBoard : function(board){
-        var rows = board.getRows();
-        var gameArea = $("#board");
-        for(var i=0;i<rows.length;i++){
-            var row = rows[i];
-            for(var j=0;j<row.length;j++){
-                var bubble = row[j];
-                if(bubble){
-                    var sprite = bubble.getSprite();
-                    gameArea.append(sprite);
-                    var left = j * ui.BUBBLE_DIMS/2;
-                    var top = i * ui.ROW_HEIGHT;
-                    sprite.css({
-                        left : left,
-                        top : top
-                    });
+            var rows = board.getRows();
+            var gameArea = $("#board");
+            for(var i=0;i<rows.length;i++){
+                    var row = rows[i];
+                    for(var j=0;j<row.length;j++){
+                        var bubble = row[j];
+                        if(bubble){
+                            var sprite = bubble.getSprite();
+                            gameArea.append(sprite);
+                            var left = j * ui.BUBBLE_DIMS/2;
+                            var top = i * ui.ROW_HEIGHT;
+                            sprite.css({
+                                left : left,
+                                top : top
+                            });
+                        };
+                    };
                 };
-            };
-        };
         },
         drawBubblesRemaining : function(numBubbles){
             $("#bubbles_remaining").text(numBubbles);

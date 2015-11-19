@@ -1,35 +1,35 @@
 body
 {
-   margin: 0;
+	margin: 0;
 }
 #page
 {
-  position: absolute;
-  left:0;
-  top: 0;
-  width: 1000px;
-  height: 738px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 1000px;
+	height: 738px;
 }
 #top_bar
 {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1000px;
-  height: 70px;
-  background-color: #369;
-  color: #fff;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 1000px;
+	height: 70px;
+	background-color: #369;
+	color: #fff;
 }
 #game
 {
-  position: absolute;
-  left: 0px;
-  top: 70px;
-  width: 1000px;
-  height: 620px;
-  background-color: #fff
-  clip: auto;
-  overflow: hidden;
+	position: absolute;
+	left: 0px;
+	top: 70px;
+	width: 1000px;
+	height: 620px;
+	background-color: #fff;
+	clip: auto;
+	overflow: hidden;
 }
 #board
 {
@@ -41,23 +41,12 @@ body
 }
 #footer_bar
 {
-  position: absolute;
-  left: 0;
-  top: 690px;
-  width: 1000px;
-  height: 48px;
-  background-color: #369;
-}
-#bubbles_remaining
-{
 	position: absolute;
-	left: 479px;
-	top: 520px;
-	width: 50px;
-	font-size: 26px;
-	font-weight: bold;
-	color: #000;
-	text-align: center;
+	left: 0;
+	top: 690px;
+	width: 1000px;
+	height: 48px;
+	background-color: #369;
 }
 .dialog
 {
@@ -68,7 +57,7 @@ body
 	width: 320px;
 	background-color: #369;
 	border-radius: 30px;
-	boarder: 2px solid #99f;
+	border: 2px solid #99f;
 	padding: 20px 50px;
 	color: #fff;
 	text-align: center;
@@ -82,7 +71,7 @@ body
 }
 .but_start_game
 {
-	position: abslute;
+	position: absolute;
 	left: 100px;
 	top: 360px;
 	height: 60px;
@@ -98,9 +87,20 @@ body
 }
 .but_start_game:hover
 {
-	background-color: #f33
+	background-color: #f33;
 }
 #start_game
 {
 	display: block;
+}
+#bubbles_remaining
+{
+	position: absolute;
+	left: 479px;
+	top: 520px;
+	width: 50px;
+	font-size: 26px;
+	font-weight: bold;
+	color: #000;
+	text-align: center;
 }

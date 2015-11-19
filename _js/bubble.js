@@ -5,7 +5,9 @@ BubbleShoot.Bubble = (function($){
         this.getType = function(){ return type;};
         this.getSprite = function(){ return sprite;};
         this.getCol = function(){ return col;};
+        this.setCol = function(colIn){ col = colIn;};
         this.getRow = function(){ return row;};
+        this.setRow = function(rowIn){ row = rowIn;};
         this.getCoords = function(){
             var coords = {
                 left : that.getCol() * BubbleShoot.ui.BUBBLE_DIMS/2 + BubbleShoot.ui.BUBBLE_DIMS/2,
@@ -15,9 +17,9 @@ BubbleShoot.Bubble = (function($){
         }
     };
     Bubble.create = function(rowNum,colNum,type){
-        if(type == undefined){
+        if(type === undefined){
             type = Math.floor(Math.random() * 4);
-        }
+        };
         var sprite = $(document.createElement("div"));
         sprite.addClass("bubble");
         sprite.addClass("bubble_" + type);
