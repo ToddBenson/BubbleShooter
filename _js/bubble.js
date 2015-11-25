@@ -15,6 +15,22 @@ BubbleShoot.Bubble = (function($){
             };
             return coords;
         }
+        this.animatePop = function(){
+            var top = type * that.getSprite().height();
+            this.getSprite().css(Modernizr.prefixed("transform"),"rotate(" + (Math.random() * 360) + "deg)");
+            setTimeout(function(){
+                that.getSprite().css("background-position","-50px -" + top + "px");
+            },125);
+            setTimeout(function(){
+                that.getSprite().css("background-position","-100px -" + top + "px");
+            },150);
+            setTimeout(function(){
+                that.getSprite().css("background-position","-150px -" + top + "px");
+            },175);
+            setTimeout(function(){
+                that.getSprite().remove();
+            },200);
+        };
     };
     Bubble.create = function(rowNum,colNum,type){
         if(type === undefined){

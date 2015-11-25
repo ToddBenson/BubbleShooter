@@ -34,6 +34,13 @@ BubbleShoot.Game = (function($){
 	    	var coords = collision.coords;
 	       	duration = Math.round(duration * collision.distToCollision / distance);
 	        board.addBubble(curBubble,coords);
+	        var group = board.getGroup(curBubble,{});
+	        if(group.list.length >= 3){
+	        	popBubbles(group.list,duration);
+	        	var orphans = board.findOrphans();
+	        	var delay = duration + 200 + 30 * group.list.length;
+	        	dropBubbles(orphans,delay)
+	        };
 	    }else{
 	    	var distX = Math.sin(angle) * distance;
 	    	var distY = Math.cos(angle) * distance;
@@ -46,6 +53,28 @@ BubbleShoot.Game = (function($){
 	    BubbleShoot.ui.fireBubble(curBubble,coords,duration);
 	    curBubble = getNextBubble();
 	};
+	var popBubbles = function(bubbles,delay){
+		$.each(bubbles,function(){
+			var bubble = this;
+			setTimeout(function(){
+				bubble.animatePop();
+			},delay);
+			board.popBubbleAt(this.getRow(),this.getCol());
+			setTimeout(function(){
+				bubble.getSprite().remove();
+			},delay + 200);
+			delay += 60;
+		});
+	};
+	var dropBubbles = function(bubbles,delay){
+		$.each(bubbles,function(){
+			var bubble = this;
+			board.popBubbleAt(bubble.getRow(),bubble.getCol());
+			setTimeout(function(){
+				bubble.getSprite().kaboom();
+			},delay);
+			});
+		};
   };
   return Game;
 })(jQuery);
