@@ -1,7 +1,27 @@
 var BubbleShoot = window.BubbleShoot || {};
 BubbleShoot.Bubble = (function($){
+    BubbleShoot.BubbleState = {
+        CURRENT : 1,
+        ON_BOARD : 2,
+        FIRING : 3,
+        POPPING : 4,
+        FALLING : 5,
+        POPPED : 6,
+        FIRED : 7,
+        FALLEN : 8
+    };
     var Bubble = function(row,col,type,sprite){
         var that = this;
+        var state;
+        var stateStart = Date.now();
+        this.getState = function(){ return state;};
+        this.setState = function(stateIn){
+            state = stateIn;
+            stateStart = Date.now();
+        };
+        this.getTimeInState = function(){
+            return Date.now() - stateStart;
+        };
         this.getType = function(){ return type;};
         this.getSprite = function(){ return sprite;};
         this.getCol = function(){ return col;};
@@ -14,7 +34,7 @@ BubbleShoot.Bubble = (function($){
                 top : that.getRow() * BubbleShoot.ui.ROW_HEIGHT + BubbleShoot.ui.BUBBLE_DIMS/2
             };
             return coords;
-        }
+        };
         this.animatePop = function(){
             var top = type * that.getSprite().height();
             this.getSprite().css(Modernizr.prefixed("transform"),"rotate(" + (Math.random() * 360) + "deg)");
@@ -36,7 +56,13 @@ BubbleShoot.Bubble = (function($){
         if(type === undefined){
             type = Math.floor(Math.random() * 4);
         };
-        var sprite = $(document.createElement("div"));
+        if(!BubbleShoot.Renderer){
+            var sprite = $(document.createElement("div"));
+            sprite.addClass("bubble");
+            sprite.addClass("bubble_" + type);
+        }else{
+            var sprite = new BubbleShoot.Sprite();
+        }
         sprite.addClass("bubble");
         sprite.addClass("bubble_" + type);
         var bubble = new Bubble(rowNum,colNum,type,sprite);

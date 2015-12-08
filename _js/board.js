@@ -88,6 +88,20 @@ BubbleShoot.Board = (function($){
             };
             return orphaned;
         }
+        this.getBubbles = function(){
+            var bubbles = [];
+            var rows = this.getRows();
+            for(var i=0;i<rows.length;i++){
+                var row = rows[i];
+                for(var j=0;j<row.length;j++){
+                    var bubble = row[j];
+                    if(bubble){
+                        bubbles.push(bubble);
+                    };
+                };
+            };
+            return bubbles;
+        };
         return this;
     };
     var createLayout = function(){
@@ -97,11 +111,21 @@ BubbleShoot.Board = (function($){
             var startCol = i%2 == 0 ? 1 : 0;
             for(var j=startCol;j<NUM_COLS;j+=2){
                 var bubble = BubbleShoot.Bubble.create(i,j);
+                bubble.setState(BubbleShoot.BubbleState.ON_BOARD);
+                if(BubbleShoot.Renderer){
+                    var left = j * BubbleShoot.ui.BUBBLE_DIMS/2;
+                    var top = i * BubbleShoot.ui.ROW_HEIGHT;
+                    bubble.getSprite().setPosition({
+                        left : left,
+                        top : top
+                    });
+                };
                 row[j] = bubble;
             };
             rows.push(row);
         };
         return rows;
     };
+
     return Board;
 })(jQuery);

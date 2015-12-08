@@ -21,6 +21,10 @@
 		"_js/collision-detector.js",
 		"_js/jquery.kaboom.js",
 		{
+			test: Modernizr.canvas,
+			yep: ["_js/renderer.js","_js/sprite.js"]
+		},
+		{
 		  load: "_js/game.js",
 		  complete: function() {
 		  	$(function() {
