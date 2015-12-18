@@ -7,7 +7,8 @@
         <link href="_css/game.css" rel="stylesheet">
 		<script src="_js/modernizr.js"></script>
 		<script>
-		Modernizr.load([{
+		Modernizr.load([
+		{
 			load: "http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js",
 			complete: function(){
 				if(!window.jQuery){
@@ -20,6 +21,7 @@
 		"_js/board.js",
 		"_js/collision-detector.js",
 		"_js/jquery.kaboom.js",
+
 		{
 			test: Modernizr.canvas,
 			yep: ["_js/renderer.js","_js/sprite.js"]
@@ -32,26 +34,54 @@
 		  		game.init();
 		  	})
 		  }
-		}
-	 ]);
+		}]);
 	        </script>
 	</head>
 	<body>
 		<div id="page">
-		  <div id="top_bar"></div>
+		  <div id="top_bar">
+			  <div id="top_level_box" class="top_bar_box">
+				  <div id="top_level_label">Level:</div>
+				  <div id="level">1</div>
+			  </div>
+			  <div class="top_bar_box">
+				  <div id="top_score_label">Score:</div>
+				  <div id="score">0</div>
+			  </div>
+			  <div class="top_bar_box">
+				  <div id="top_score_label">High Score:</div>
+				  <div id="high_score">0</div>
+			  </div>
+		  </div>
 		  <div id="game">
               <div id="board"></div>
 			  <div id="bubbles_remaining"></div>
           </div>
 		  <div id="footer_bar"></div>
-		    <div id="start_game" class="dialog">
+			<div id="start_game" class="dialog">
 			    <div id="start_game_message">
-			    <h2>Start a new game</h2>
-		    </div>
-		    <div class="but_start_game button">
-			    New Game
-		    </div>
-		  </div>
+				    <h2>Start a new game</h2>
+		    	</div>
+		    	<div class="but_start_game button">
+			    	New Game
+		    	</div>
+			</div>
+		  	<div id="end_game" class="dialog">
+				<div id="end_game_message">
+				<h2>Game Over</h2>
+				<div id="final_score">
+					<span>Final Score:</span>
+					<span id="final_score_value"></span>
+				</div>
+				<div id="new_high_score">New High Score!</div>
+				<div id="level_failed" class="level_failed">Level Failed!</div>
+				<div id="level_complete" class="level_complete">Level Complete!</div>
+			</div>
+			<div class="but_start_game button">
+				<span class="level_complete">Next Level</span>
+				<span class="level_failed">New Game</span>
+			</div>
 		</div>
+	</div>
 	</body>
 </html>

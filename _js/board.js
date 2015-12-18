@@ -102,6 +102,9 @@ BubbleShoot.Board = (function($){
             };
             return bubbles;
         };
+        this.isEmpty = function(){
+            return this.getBubbles().length == 0;
+        };
         return this;
     };
     var createLayout = function(){

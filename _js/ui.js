@@ -84,7 +84,30 @@ BubbleShoot.ui = (function($){
         },
         drawBubblesRemaining : function(numBubbles){
             $("#bubbles_remaining").text(numBubbles);
-        }
+        },
+        drawScore : function(score){
+            $("#score").text(score);
+        },
+        drawHighScore : function(highScore){
+            $("#high_score").text(highScore);
+        },
+        drawLevel : function(level){
+            $("#level").text(level+1);
+        },
+        endGame : function(hasWon,score){
+             $("#game").unbind("click");
+             BubbleShoot.ui.drawBubblesRemaining(0);
+             if(hasWon){
+                 $(".level_complete").show();
+                 $(".level_failed").hide();
+             }else{
+                 $(".level_complete").hide();
+                 $(".level_failed").show();
+             };
+             $("#end_game").fadeIn(500);
+             $("#final_score_value").text(score);
+         }
     };
+
     return ui;
 })(jQuery);

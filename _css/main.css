@@ -20,6 +20,19 @@ body
 	background-color: #369;
 	color: #fff;
 }
+.top_bar_box
+{
+	font-size: 24px;
+	line-height: 60px;
+	float: left;
+	margin-left:20px;
+	width: 250px;
+}
+.top_bar_box div
+{
+	float: left;
+	margin-right:20px;
+}
 #game
 {
 	position: absolute;
@@ -123,4 +136,17 @@ body
 {
 	width: 1000px;
 	height: 620px;
+}
+#final_score
+{
+	margin: 26px 0;
+}
+#end_game_message span
+{
+	margin-right: 20px;
+	font-size: 24px;
+}
+#level_complete, #level_failed,#new_high_final_score{
+	font-size: 36px;
+	color: #fff;
 }
