@@ -20,6 +20,10 @@ BubbleShoot.Game = (function($){
 		}else{
 	  		$(".but_start_game").click("click",startGame);
 		};
+		if(window.localStorage && localStorage.getItem("high_score")){
+		    highScore = parseInt(localStorage.getItem("high_score"));
+		}
+		BubbleShoot.ui.drawHighScore(highScore);
 	};
 	var startGame = function(){
 		$(".but_start_game").unbind("click");
@@ -67,6 +71,16 @@ BubbleShoot.Game = (function($){
 	        var group = board.getGroup(curBubble,{});
 	        if(group.list.length >= 3){
 	        	popBubbles(group.list,duration);
+	        	var topRow = board.getRows()[0];
+	        	var topRowBubbles= [];
+	        	for(var i=0;i<topRow.length;i++){
+	        	    if(topRow[i])
+	        	        topRowBubbles.push(topRow[i]);
+	        	};
+	        	if(topRowBubbles.length <= 5){
+	        	    popBubbles(topRowBubbles,duration);
+	        	    group.list.concat(topRowBubbles);
+	        	};
 	        	var orphans = board.findOrphans();
 	        	var delay = duration + 200 + 30 * group.list.length;
 	        	dropBubbles(orphans,delay);
@@ -142,6 +156,9 @@ BubbleShoot.Game = (function($){
 			highScore = score;
 			$("new_high_score").show();
 			BubbleShoot.ui.drawHighScore(highScore);
+			if(window.localStorage){
+			    localStorage.setItem("high_score",highScore);
+			}
 		}else{
 			$("new_high_score").hide();
 		};
